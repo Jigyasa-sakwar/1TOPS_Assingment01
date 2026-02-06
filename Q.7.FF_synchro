@@ -1,0 +1,23 @@
+`timescale 1ns / 1ps
+
+module FFsynchro(
+input  wire clk,
+input wire rst,
+input wire asyn_in,
+output reg syn_out);
+ 
+ reg synff1,synff2;
+always @(posedge clk or negedge rst)begin
+
+       if (!rst)begin
+          synff1 <= 1'b0;
+          syn_out <= 1'b0;
+ 
+         end
+           else begin 
+               synff1 <= asyn_in;
+               syn_out <= synff1;
+ 
+            end 
+  end
+endmodule

@@ -1,0 +1,19 @@
+`timescale 1ns / 1ps
+
+module binarytogray_tb;
+reg [2:0]bin;
+wire [2:0]gray;
+
+binarytogray dut(bin,gray);
+initial begin
+$monitor("bin=%b,gray=%b,time %0t",bin,gray,$time);
+bin=3'b000;#10
+bin=3'b001;#10
+bin=3'b010;#10
+bin=3'b011;#10
+bin=3'b100;#10
+bin=3'b101;#10
+bin=3'b110;#10
+bin=3'b111;#10
+#10 $stop;
+end

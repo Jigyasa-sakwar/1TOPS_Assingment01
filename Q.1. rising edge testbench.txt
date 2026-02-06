@@ -1,0 +1,37 @@
+`timescale 1ns / 1ps
+
+module risingedge_tb;
+reg clk;
+reg rst;
+reg sgn;
+wire pulse;
+
+risingedge dut(.clk(clk),.rst(rst),.sgn(sgn),.pulse(pulse));
+always #5 clk=~clk;
+
+initial begin
+clk=0;
+rst=0;
+sgn=0;
+ 
+ #10
+ rst=1;
+ 
+ #10
+ sgn = 1'b1;
+ #15
+ sgn = 1'b1;
+ #15
+ sgn = 1'b0;
+ #15
+ sgn = 1'b1;
+ #15
+ sgn = 1'b0;
+ #15
+ sgn = 1'b1;
+ 
+ #50
+ $stop;
+ end
+ 
+endmodule

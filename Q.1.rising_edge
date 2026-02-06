@@ -1,0 +1,22 @@
+`timescale 1ns / 1ps
+
+module risingedge(
+input  clk,
+input  rst,
+input  wire sgn,
+output reg pulse);
+
+reg prev_in;
+
+always @(posedge clk or negedge rst)begin
+   if (!rst)begin
+         prev_in<=1'b0;
+        pulse<=1'b0;
+    
+end else begin 
+           pulse<= sgn & ~prev_in;
+           prev_in <= sgn;
+        end
+   end
+    
+endmodule

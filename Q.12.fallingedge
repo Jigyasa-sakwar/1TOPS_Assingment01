@@ -1,0 +1,22 @@
+`timescale 1ns / 1ps
+
+module fallingedge(
+input  clk,
+input  rst,
+input wire prev_in,
+output reg pulse);
+
+reg sgn;
+
+always @(posedge clk or negedge rst)begin
+        if(!rst)begin
+           sgn <= 1'b1;
+           pulse <=1'b1;
+ 
+        end 
+           else begin
+               pulse <= ~prev_in & sgn;
+              sgn <= prev_in;
+           end
+ end
+endmodule

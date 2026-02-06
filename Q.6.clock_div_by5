@@ -1,0 +1,29 @@
+`timescale 1ns / 1ps
+
+module clock_div(
+input clk,
+input rst,
+output wire or_out);
+
+reg [2:0]count;
+reg div_5;
+
+ assign or_out = div_5 | clk;
+always @(posedge clk or negedge rst)begin
+      if (!rst)begin
+           count <= 0;
+           div_5 <=0;
+ 
+     end
+           else begin
+           if (count == 4)begin
+               div_5 <= ~div_5;
+  
+           end
+           else begin
+                count <= count +1; 
+                   end 
+           end 
+ end
+   
+endmodule
